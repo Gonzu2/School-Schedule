@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+    --button-background: rgb(33, 148, 236);
+}
 
 body,
 html {
@@ -9,4 +12,222 @@ html {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
+
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    letter-spacing: 1.25px;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.app-main-div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.schedule-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+
+    max-width: 1200px;
+    max-height: 1200px;
+
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.class-button {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    max-width: 165px;
+    box-shadow: -7px 9px 18px -5px rgba(4, 100, 172, 0.6)
+}
+
+.class-choose-button {
+    width: 125px;
+    height: 50px;
+
+    border: 1px solid black;
+    border-bottom: none;
+
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: relative;
+
+    font-size: 24px;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    padding: 0 0 0 25px;
+    background: var(--button-background);
+    cursor: pointer;
+
+    color: white;
+}
+
+.class-chosen {
+    width: 135px;
+    height: 50px;
+
+    border: 1px solid black;
+
+    border-radius: 10px;
+    border-top-left-radius: 0;
+
+    font-size: 24px;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 0 0 25px;
+
+
+    color: white;
+    background: var(--button-background);
+}
+
+.class-choose-button-container::after {
+    content: '';
+    position: absolute;
+    width: 123px;
+    height: 3px;
+    background: var(--button-background);
+    bottom: 50px;
+    left: 1px;
+}
+
+.class-choose-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.class-choose-button-border {
+    width: 20px;
+    height: 40px;
+    border: 1px solid black;
+    border-top: none;
+    border-right: none;
+
+    position: absolute;
+    right: 17px;
+    bottom: 51px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0px 9px 0 0 var(--button-background);
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+
+    table-layout: fixed;
+}
+
+th {
+    border: 1px solid black;
+    padding: 0 5px 0 5px;
+}
+
+.lessons {
+    height: 100px;
+}
+
+th:nth-child(1) {
+    border-left: none;
+}
+
+.days-container {
+    padding: 0 10px 0 10px;
+}
+
+.lesson-number-container {
+    height: 60px;
+}
+
+
+.lesson-number {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.lesson-time {
+    font-size: 14px;
+    width: max-content;
+    font-weight: 500;
+}
+
+.lessons {
+    font-weight: 600;
+}
+
+.lesson {
+    justify-items: start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    height: 120px;
+    width: 100%;
+    padding: 0;
+}
+
+.lesson-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font-weight: 600;
+}
+
+.lesson-extra-info {
+    box-sizing: border-box;
+    position: relative;
+}
+
+.lesson-class {
+    position: absolute;
+    bottom: 2px;
+    left: 3px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.lesson-teacher {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 22px;
+    font-weight: 600;
 }
