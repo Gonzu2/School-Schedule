@@ -20,7 +20,7 @@ function ClassButton() {
                     <button className="class-choose-button" onClick={openClassMenu}>Klasė</button>
                     <div className="class-choose-button-border" onClick={openClassMenu}></div>
                 </div>
-                <div className="class-chosen" onClick={openClassMenu}>JS22/1v</div>
+                <div className="class-chosen" style={isMenuOpen ? { borderBottomLeftRadius: "0", borderBottomRightRadius: "0" } : { borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px" }} onClick={openClassMenu}>JS22/1v</div>
             </div>
             <ul className="classes-menu" style={isMenuOpen ? { display: "flex" } : { display: "none" }}>
                 <li className="classes-menu-item">
