@@ -9,7 +9,8 @@
     overflow: hidden;
 
     max-width: 165px;
-    box-shadow: -7px 9px 18px -5px rgba(4, 100, 172, 0.6);
+
+    background: transparent;
 }
 
 .class-choose-button {
@@ -34,7 +35,7 @@
     background: var(--button-background);
     cursor: pointer;
 
-    color: white;
+    color: #292929;
 }
 
 .class-chosen {
@@ -54,7 +55,7 @@
     padding: 0 0 0 25px;
 
 
-    color: white;
+    color: #292929;
     background: var(--button-background);
 }
 
@@ -86,12 +87,6 @@
     bottom: 51px;
     border-bottom-left-radius: 10px;
     box-shadow: 0px 9px 0 0 var(--button-background);
-}
-
-@media screen and (width <=1310px) {
-    .class-button-container {
-        width: 577px;
-    }
 }
 
 @media screen and (width <=420px) {
