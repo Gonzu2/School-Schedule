@@ -9,7 +9,7 @@
     overflow: hidden;
 
     max-width: 165px;
-    box-shadow: -7px 9px 18px -5px rgba(4, 100, 172, 0.6)
+    box-shadow: -7px 9px 18px -5px rgba(4, 100, 172, 0.6);
 }
 
 .class-choose-button {
@@ -62,7 +62,7 @@
     content: '';
     position: absolute;
     width: 123px;
-    height: 3px;
+    height: 10px;
     background: var(--button-background);
     bottom: 50px;
     left: 1px;
@@ -82,8 +82,20 @@
     border-right: none;
 
     position: absolute;
-    right: 17px;
+    right: 20px;
     bottom: 51px;
     border-bottom-left-radius: 10px;
     box-shadow: 0px 9px 0 0 var(--button-background);
+}
+
+@media screen and (width <=1310px) {
+    .class-button-container {
+        width: 577px;
+    }
+}
+
+@media screen and (width <=420px) {
+    .class-choose-button-container::after {
+        bottom: 50px;
+    }
 }

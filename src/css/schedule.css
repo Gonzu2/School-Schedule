@@ -1,11 +1,15 @@
-table {
+.main-schedule-big,
+.main-schedule-small {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 0;
     margin: 0;
 
     table-layout: fixed;
+
+    display: table;
 }
+
 
 th {
     border: 1px solid black;
@@ -15,6 +19,8 @@ th {
 .lessons {
     height: 100px;
 }
+
+
 
 th:nth-child(1) {
     border-left: none;
@@ -88,4 +94,90 @@ th:nth-child(1) {
     right: 3px;
     font-size: 22px;
     font-weight: 600;
+}
+
+.main-schedule-small {
+    display: none;
+}
+
+.schedules-container {
+    max-height: 2000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 50px;
+
+    padding: 0 0 50px 0;
+
+}
+
+@media screen and (width <=1310px) {
+    .main-schedule-big {
+        display: none;
+    }
+
+    .main-schedule-small {
+        display: table;
+    }
+
+    .lessons {
+        width: 96px;
+        max-width: 96px;
+        padding: 5px;
+        box-sizing: border-box;
+        position: relative;
+
+        font-size: 16px;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        word-wrap: break-word;
+    }
+
+    .lesson-number-container {
+        height: 120px;
+    }
+}
+
+@media screen and (width <=590px) {
+
+    .schedules-container{
+        transform-origin: center top;
+        /* Set the transform origin to the top center */
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (width <=535px) {
+    .schedules-container {
+        transform-origin: center top;
+        /* Set the transform origin to the top center */
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (width <= 475px) {
+
+    .schedules-container {
+        transform-origin: center top;
+        /* Set the transform origin to the top center */
+        transform: scale(0.7);
+    }
+}
+
+@media screen and (width <= 420px) {
+
+    .schedules-container {
+        transform-origin: center top;
+        /* Set the transform origin to the top center */
+        transform: scale(0.65);
+    }
+}
+
+@media screen and (width <= 390px) {
+
+    .schedules-container {
+        transform-origin: center top;
+        /* Set the transform origin to the top center */
+        transform: scale(0.6);
+    }
 }

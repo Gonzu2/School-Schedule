@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar"
 import Schedule from "./components/Schedule"
-import ClassButton from "./components/ClassButton"
 import "./css/app.css"
 
 function App() {
@@ -11,8 +10,6 @@ function App() {
 
       <div className="schedule-container">
         <div className="main">
-          <ClassButton />
-
           <Schedule />
         </div>
       </div>
