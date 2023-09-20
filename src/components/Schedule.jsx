@@ -54,7 +54,7 @@ function Schedule() {
                     <div className="lesson-time">18:25 - 19:10</div>
                 </th>
             </tr>
-            <tr>
+            <tr align="center">
                 <th id="monday-lessons" className="lessons">
                     Pirmadienis
                 </th>

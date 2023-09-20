@@ -26,6 +26,7 @@ th:nth-child(1) {
 
 .lesson-number-container {
     height: 60px;
+    padding: 0;
 }
 
 
@@ -35,9 +36,10 @@ th:nth-child(1) {
 }
 
 .lesson-time {
-    font-size: 14px;
+    font-size: 12px;
     width: max-content;
     font-weight: 500;
+    width: 95px;
 }
 
 .lessons {
@@ -51,8 +53,10 @@ th:nth-child(1) {
     position: relative;
     box-sizing: border-box;
     height: 120px;
-    width: 100%;
     padding: 0;
+
+    width: 90px;
+    overflow: hidden;
 }
 
 .lesson-name {
