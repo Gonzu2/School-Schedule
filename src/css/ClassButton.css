@@ -1,179 +1,206 @@
 .class-button {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-  
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-  
-    max-width: 165px;
-  
-    background: transparent;
-  }
-  
-  .class-choose-button {
-    width: 125px;
-    height: 50px;
-  
-    border: 1px solid black;
-    border-bottom: none;
-  
-    border-radius: 10px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    position: relative;
-  
-    font-size: 24px;
-  
-    display: flex;
-    justify-content: start;
-    align-items: center;
-  
-    padding: 0 0 0 25px;
-    background: var(--button-background);
-    cursor: pointer;
-  
-    color: #292929;
-  }
-  
-  .class-chosen {
-    width: 135px;
-    height: 50px;
-  
-    border: 1px solid black;
-  
-    border-radius: 10px;
-    border-top-left-radius: 0;
-  
-    font-size: 24px;
-  
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0 0 0 25px;
-  
-    color: #292929;
-    background: var(--button-background);
-  
-    cursor: pointer;
-  }
-  
-  .class-choose-button-container::after {
-    content: "";
-    position: absolute;
-    width: 123px;
-    height: 3px;
-    background: var(--button-background);
-    bottom: 50px;
-    left: 1px;
-    cursor: pointer;
-  }
-  
-  .class-choose-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  max-width: 165px;
+
+  background: transparent;
+}
+
+.class-choose-button {
+  width: 125px;
+  height: 50px;
+
+  border: 1px solid black;
+  border-bottom: none;
+
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  position: relative;
+
+  font-size: 24px;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  padding: 0 0 0 25px;
+  background: var(--button-background);
+  cursor: pointer;
+
+  color: #292929;
+}
+
+.class-chosen {
+  width: 135px;
+  height: 50px;
+
+  border: 1px solid black;
+
+  border-radius: 10px;
+  border-top-left-radius: 0;
+
+  font-size: 24px;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 0 0 25px;
+
+  color: #292929;
+  background: var(--button-background);
+
+  cursor: pointer;
+}
+
+.class-choose-button-container::after {
+  content: "";
+  position: absolute;
+  width: 123px;
+  height: 3px;
+  background: var(--button-background);
+  bottom: 50px;
+  left: 1px;
+  cursor: pointer;
+}
+
+.class-choose-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.class-choose-button-border {
+  width: 20px;
+  height: 40px;
+  border: 1px solid black;
+  border-top: none;
+  border-right: none;
+
+  position: absolute;
+  right: 20px;
+  bottom: 51px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0px 9px 0 0 var(--button-background);
+}
+
+.class-button-container {
+  position: relative;
+}
+
+.classes-menu {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  bottom: -156px;
+  left: 0;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  height: 200px;
+
+  list-style: none;
+  width: 160px;
+
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  font-weight: 400;
+  padding: 6px 0 0 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 10px;
+  margin: 0;
+
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.classes-menu-item {
+
+  background-color: white;
+  box-sizing: border-box;
+  font-size: 24px;
+  position: relative;
+
+  cursor: pointer;
+  padding: 10px 0 10px 25px;
+
+  width: 100%;
+}
+
+.classes-menu-item::before {
+  content: "";
+  display: none;
+  position: absolute;
+  width: 160px;
+  height: 10px;
+  background: rgb(138, 137, 137, 0.3);
+  left: 0;
+  top: -10px;
+  border-top-right-radius: 10px;
+}
+
+.classes-menu-item-selected {
+  background: rgb(4, 100, 172);
+  color: white;
+}
+
+.classes-menu-item-top::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 10px;
+  background: rgb(4, 100, 172);
+  left: 0;
+  top: -10px;
+  border-top-right-radius: 10px;
+}
+
+/* .classes-menu-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: black;
+
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease-in;
+} */
+
+/* .classes-menu-item:not(.classes-menu-item-selected):hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+} */
+
+.classes-menu-item:not(.classes-menu-item-selected):hover {
+  background: rgb(138, 137, 137, 0.3);
+}
+
+.classes-menu-item:not(.classes-menu-item-selected):nth-child(1):hover::before {
+  display: block;
+}
+
+@media screen and (width <=475px) {
   .class-choose-button-border {
-    width: 20px;
-    height: 40px;
-    border: 1px solid black;
-    border-top: none;
-    border-right: none;
-  
-    position: absolute;
-    right: 20px;
     bottom: 51px;
-    border-bottom-left-radius: 10px;
-    box-shadow: 0px 9px 0 0 var(--button-background);
   }
-  
-  .class-button-container {
-    position: relative;
+}
+
+@media screen and (width <=420px) {
+  .class-choose-button-container::after {
+    bottom: 50px;
   }
-  
-  .classes-menu {
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-    border: 1px solid black;
-    border-top: none;
-    bottom: -156px;
-    left: 0;
-    border-radius: 5px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    height: 200px;
-  
-    list-style: none;
-    width: 160px;
-  
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
-    font-weight: 400;
-    padding: 6px 0 0 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 10px;
-    margin: 0;
-  
-    overflow: hidden;
-    overflow-y: auto;
-  }
-  
-  .classes-menu-item {
-  
-    background-color: white;
-    box-sizing: border-box;
-    font-size: 24px;
-    position: relative;
-  
-    cursor: pointer;
-    padding: 10px 0 10px 25px;
-  
-    width: 100%;
-  }
-  
-  .classes-menu-item-selected {
-    background: rgb(4, 100, 172);
-    color: white;
-  }
-  
-  .classes-menu-item-selected-top {
-  
-  }
-  
-  .classes-menu-item::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: black;
-  
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 250ms ease-in;
-  }
-  
-  .classes-menu-item:not(.classes-menu-item-selected):hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  
-  @media screen and (width <= 475px) {
-    .class-choose-button-border {
-      bottom: 51px;
-    }
-  }
-  
-  @media screen and (width <= 420px) {
-    .class-choose-button-container::after {
-      bottom: 50px;
-    }
-  }
+}

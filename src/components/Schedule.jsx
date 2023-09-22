@@ -1,199 +1,287 @@
+import { allClasses, getCurrentClassChosen } from "./ClassButton";
 import ClassButton from "./ClassButton";
 import "../css/schedule.css";
 
+import { useState } from "react";
+
 function Schedule() {
-  let colors = [
-    "#80e0ff",
-    "#80b4c0",
-    "#e080ce",
-    "#c09d80",
-    "#80e080",
-    "#ffc080",
-  ];
+    // let colors = [
+    //     "#80e0ff",
+    //     "#80b4c0",
+    //     "#e080ce",
+    //     "#c09d80",
+    //     "#80e080",
+    //     "#ffc080",
+    // ];
 
-  let lessons = [
-    {
-      lessonDay: 1,
-      lessonNumber: 1,
-      lessonName: "Anglų",
-      lessonTeacher: "Vaiva Kažkas",
-      lessonTeacherShort: "",
-      lessonClass: 44,
-      lessonBackground: colors[0],
-    },
-    {
-      lessonDay: 1,
-      lessonNumber: 3,
-      lessonName: "Anglų",
-      lessonTeacher: "Vaiva Kažkas",
-      lessonTeacherShort: "",
-      lessonClass: 44,
-      lessonBackground: colors[0],
-    },
-    {
-      lessonDay: 1,
-      lessonNumber: 4,
-      lessonName: "Matkė",
-      lessonTeacher: "Vaiva Kažkas",
-      lessonTeacherShort: "",
-      lessonClass: 44,
-      lessonBackground: colors[0],
-    },
-  ];
+    // let teachers = [
+    //     "Andreikėnienė Jolanta",
+    //     "Andrušaitė Deimantė",
+    //     "Balickis Tomas",
+    //     "Bartašė Jolanta",
+    //     "Boska Vytautas",
+    //     "Chmelevskienė Rasa",
+    //     "Chomaniuk Jevgenij"
+    // ]
 
-  lessons.forEach((lesson) => {
-    let teacherName = lesson.lessonTeacher
-      .replace(/[a-ž]/g, "")
-      .replace(" ", "");
-    lesson.lessonTeacherShort = teacherName;
-  });
+    // let lessonsNames = [
+    //     "Anglų kalba",
+    //     "Matematika",
+    //     "Lietuvių kalba",
+    //     "Geografija",
+    //     "Biologija",
+    //     "Informacinės Technologijos",
+    //     "Dailė"
+    // ]
+
+    const lessonTimes = [
+        "8:00 - 8:45",
+        "8:55 - 9:40",
+        "9:50 - 10:35",
+        "10:45 - 11:30",
+        "12:00 - 12:45",
+        "12:55 - 13:40",
+        "13:50 - 14:35",
+        "14:45 - 15:30",
+        "15:40 - 16:25",
+        "16:35 - 17:20",
+        "17:30 - 18:15",
+        "18:25 - 19:10"
+    ]
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    let lessons = [
+        {
+            "JS 22/1v": {
+                lessons_monday: [
+                    {
+                        lessonNumber: 1,
+                        lessonName: "Anglų kalba",
+                        lessonTeacher: "Andreikėnienė Jolanta",
+                        lessonBackground: "#80e0ff",
+                        lessonClass: randomInt(1, 99)
+                    },
+                ],
+                lessons_tuesday: [
+
+                ],
+                lessons_wednesday: [
+
+                ],
+                lessons_thursday: [
+
+                ],
+                lessons_friday: [
+
+                ],
+            },
+            "GJS 23/1": {
+                lessons_monday: [
+
+                ],
+                lessons_tuesday: [
+                ],
+                lessons_wednesday: [
+                ],
+                lessons_thursday: [
+                ],
+                lessons_friday: [
+                    {
+                        lessonNumber: 1,
+                        lessonName: "Anglų kalba",
+                        lessonTeacher: "Andreikėnienė Jolanta",
+                        lessonBackground: "#80e0ff",
+                        lessonClass: randomInt(1, 99)
+                    },
+                ],
+            },
+        },
+    ];
+
+    const currentClassChosen = getCurrentClassChosen();
+    const [selectedClass, setSelectedClass] = useState(currentClassChosen);
 
 
+    function generateLessonSlots(dayLessons) {
+        return Array.from({ length: 12 }, (_, i) => {
+            const lessonNumber = i + 1;
+            const matchingLesson = dayLessons.find(lesson => lesson.lessonNumber === lessonNumber);
+            return matchingLesson || {
+                lessonNumber,
+                lessonName: "",
+                lessonTeacher: "",
+                lessonTeacherShort: "",
+                lessonClass: "",
+                lessonBackground: "",
+            };
+        });
+    }
 
-  // if (!foundLesson) {
-  //   lessons[i] = {
-  //     lessonDay: 1,
-  //     lessonNumber: i + 1,
-  //     lessonName: "",
-  //     lessonTeacher: "",
-  //     lessonTeacherShort: "",
-  //     lessonClass: "",
-  //     lessonBackground: "white",
-  //   };
-  // } else if (foundLesson && lessons[i].lessonNumber !== i + 1) {
-  //   lessons[lessons[i].lessonNumber - 1] = {
-  //     lessonDay: lessons[i].lessonDay,
-  //     lessonNumber: lessons[i].lessonNumber,
-  //     lessonName: lessons[i].lessonName,
-  //     lessonTeacher: lessons[i].lessonTeacher,
-  //     lessonTeacherShort: lessons[i].lessonTeacherShort,
-  //     lessonClass: lessons[i].lessonClass,
-  //     lessonBackground: lessons[i].lessonBackground,
-  //   };
-  //   lessons[i] = {
-  //     lessonDay: 1,
-  //     lessonNumber: i + 1,
-  //     lessonName: "",
-  //     lessonTeacher: "",
-  //     lessonTeacherShort: "",
-  //     lessonClass: "",
-  //     lessonBackground: "white",
-  //   };
-  // }
+    const daysOfWeek = ["lessons_monday", "lessons_tuesday", "lessons_wednesday", "lessons_thursday", "lessons_friday"];
 
-  lessons.sort((a, b) => {
-    return a.lessonNumber - b.lessonNumber;
-  });
-  console.log(lessons);
+    for (const day of daysOfWeek) {
+        lessons[0][selectedClass][day] = generateLessonSlots(lessons[0][selectedClass][day]);
+        lessons.sort((a, b) => a[selectedClass][day][0].lessonNumber - b[selectedClass][day][0].lessonNumber);
+    }
 
-  let lessons_monday = lessons.filter((lesson) => lesson.lessonDay === 1);
+    for (const day of daysOfWeek) {
+        lessons[0][selectedClass][day].forEach(lesson => {
+            lesson.lessonTeacherShort = lesson.lessonTeacher.replace(/[a-ž]/g, "").replace(" ", "");
+        });
+    }
 
-  return (
-    <div className="schedules-container">
-      <ClassButton />
-      <table className="main-schedule-big">
-        <tr className="days-and-time-container">
-          <th className="days-container">Dienos</th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">1</div>
-            <div className="lesson-time">8:00 - 8:45</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">2</div>
-            <div className="lesson-time">8:55 - 9:40</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">3</div>
-            <div className="lesson-time">9:50 - 10:35</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">4</div>
-            <div className="lesson-time">10:45 - 11:30</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">5</div>
-            <div className="lesson-time">12:00 - 12:45</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">6</div>
-            <div className="lesson-time">12:55 - 13:40</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">7</div>
-            <div className="lesson-time">13:50 - 14:35</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">8</div>
-            <div className="lesson-time">14:45 - 15:30</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">9</div>
-            <div className="lesson-time">15:40 - 16:25</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">10</div>
-            <div className="lesson-time">16:35 - 17:20</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">11</div>
-            <div className="lesson-time">17:30 - 18:15</div>
-          </th>
-          <th className="lesson-number-container">
-            <div className="lesson-number">12</div>
-            <div className="lesson-time">18:25 - 19:10</div>
-          </th>
-        </tr>
-        <tr>
-          <th id="monday-lessons" className="lessons">
-            Pirmadienis
-          </th>
+    function handleClassChange(newClass) {
+        setSelectedClass(newClass);
+    }
 
-          {lessons_monday.length !== 0
-            ? lessons_monday.map((lesson, index) => (
-                <th key={index} className="monday-lesson lesson">
-                  <div
-                    className="lesson-name"
-                    style={{ background: `${lesson.lessonBackground}` }}
-                  >
-                    {lesson.lessonName}
-                  </div>
-                  <div className="lesson-extra-info">
-                    <div className="lesson-class">{lesson.lessonClass}</div>
-                    <div className="lesson-teacher">
-                      {lesson.lessonTeacherShort}
-                    </div>
-                  </div>
-                </th>
-              ))
-            : console.log("Not found monday lessons")}
-        </tr>
+    return (
+        <div className="schedules-container">
+            <ClassButton onClassChange={handleClassChange} />
 
-        <tr>
-          <th id="monday-lessons" className="lessons">
-            Antradienis
-          </th>
-        </tr>
+            <table className="main-schedule-big">
+                <tr className="days-and-time-container">
+                    <th className="days-container">Dienos</th>
+                    {lessonTimes.length !== 0 ?
+                        lessonTimes.map((time, index) => (
+                            <th key={index} className="lesson-number-container">
+                                <div className="lesson-number">{index + 1}</div>
+                                <div className="lesson-time">{time}</div>
+                            </th>
+                        ))
+                        : null
+                    }
+                </tr>
+                <tr>
+                    <th id="monday-lessons" className="lessons">
+                        Pirmadienis
+                    </th>
 
-        <tr>
-          <th id="monday-lessons" className="lessons">
-            Trečiadienis
-          </th>
-        </tr>
+                    {lessons.length !== 0 && lessons[0][selectedClass].lessons_monday.length !== 0
+                        ? lessons[0][selectedClass].lessons_monday.map((lesson, index) => (
+                            <th key={index} className="monday-lesson lesson">
+                                <div
+                                    className="lesson-name"
+                                    style={{ background: `${lesson.lessonBackground}` }}
+                                >
+                                    {lesson.lessonName}
+                                </div>
+                                <div className="lesson-extra-info">
+                                    <div className="lesson-class">{lesson.lessonClass}</div>
+                                    <div className="lesson-teacher">
+                                        {lesson.lessonTeacherShort}
+                                    </div>
+                                </div>
+                            </th>
+                        ))
+                        : console.log("Not found Monday lessons")}
 
-        <tr>
-          <th id="monday-lessons" className="lessons">
-            Ketvirtadienis
-          </th>
-        </tr>
+                </tr>
 
-        <tr>
-          <th id="monday-lessons" className="lessons">
-            Penktadienis
-          </th>
-        </tr>
-      </table>
+                <tr>
+                    <th id="tuesday-lessons" className="lessons">
+                        Antradienis
+                    </th>
 
-      {/* 
+                    {lessons.length !== 0 && lessons[0][selectedClass].lessons_tuesday.length !== 0
+                        ? lessons[0][selectedClass].lessons_tuesday.map((lesson, index) => (
+                            <th key={index} className="tuesday-lesson lesson">
+                                <div
+                                    className="lesson-name"
+                                    style={{ background: `${lesson.lessonBackground}` }}
+                                >
+                                    {lesson.lessonName}
+                                </div>
+                                <div className="lesson-extra-info">
+                                    <div className="lesson-class">{lesson.lessonClass}</div>
+                                    <div className="lesson-teacher">
+                                        {lesson.lessonTeacherShort}
+                                    </div>
+                                </div>
+                            </th>
+                        ))
+                        : console.log("Not found tuesday lessons")}
+                </tr>
+
+                <tr>
+                    <th id="wednesday-lessons" className="lessons">
+                        Trečiadienis
+                    </th>
+
+                    {lessons.length !== 0 && lessons[0][selectedClass].lessons_wednesday.length !== 0
+                        ? lessons[0][selectedClass].lessons_wednesday.map((lesson, index) => (
+                            <th key={index} className="wednesday-lesson lesson">
+                                <div
+                                    className="lesson-name"
+                                    style={{ background: `${lesson.lessonBackground}` }}
+                                >
+                                    {lesson.lessonName}
+                                </div>
+                                <div className="lesson-extra-info">
+                                    <div className="lesson-class">{lesson.lessonClass}</div>
+                                    <div className="lesson-teacher">
+                                        {lesson.lessonTeacherShort}
+                                    </div>
+                                </div>
+                            </th>
+                        ))
+                        : console.log("Not found wednesday lessons")}
+                </tr>
+
+                <tr>
+                    <th id="thursday-lessons" className="lessons">
+                        Ketvirtadienis
+                    </th>
+                    {lessons.length !== 0 && lessons[0][selectedClass].lessons_thursday.length !== 0
+                        ? lessons[0][selectedClass].lessons_thursday.map((lesson, index) => (
+                            <th key={index} className="thursday-lesson lesson">
+                                <div
+                                    className="lesson-name"
+                                    style={{ background: `${lesson.lessonBackground}` }}
+                                >
+                                    {lesson.lessonName}
+                                </div>
+                                <div className="lesson-extra-info">
+                                    <div className="lesson-class">{lesson.lessonClass}</div>
+                                    <div className="lesson-teacher">
+                                        {lesson.lessonTeacherShort}
+                                    </div>
+                                </div>
+                            </th>
+                        ))
+                        : console.log("Not found thursday lessons")}
+                </tr>
+
+                <tr>
+                    <th id="friday-lessons" className="lessons">
+                        Penktadienis
+                    </th>
+
+                    {lessons.length !== 0 && lessons[0][selectedClass].lessons_friday.length !== 0
+                        ? lessons[0][selectedClass].lessons_friday.map((lesson, index) => (
+                            <th key={index} className="friday-lesson lesson">
+                                <div
+                                    className="lesson-name"
+                                    style={{ background: `${lesson.lessonBackground}` }}
+                                >
+                                    {lesson.lessonName}
+                                </div>
+                                <div className="lesson-extra-info">
+                                    <div className="lesson-class">{lesson.lessonClass}</div>
+                                    <div className="lesson-teacher">
+                                        {lesson.lessonTeacherShort}
+                                    </div>
+                                </div>
+                            </th>
+                        ))
+                        : console.log("Not found friday lessons")}
+
+                </tr>
+            </table>
+
+            {/* 
             
             <th className="monday-lesson lesson">
                 <div className="lesson-name" style={{ background: "rgb(26, 180, 26)" }}>Anglų</div>
@@ -204,167 +292,70 @@ function Schedule() {
             </th>
 
             */}
-      <table className="main-schedule-small">
-        <tr className="days-and-time-container">
-          <th className="days-container">Dienos</th>
-          <th id="monday-lessons" className="lessons">
-            Pirma&shy;dienis
-          </th>
-          <th id="tuesday-lessons" className="lessons">
-            Antra&shy;dienis
-          </th>
-          <th id="wednesday-lessons" className="lessons">
-            Trečia&shy;dienis
-          </th>
-          <th id="thursday-lessons" className="lessons">
-            Ketvirta&shy;dienis
-          </th>
-          <th id="friday-lessons" className="lessons">
-            Penkta&shy;dienis
-          </th>
-        </tr>
+            <table className="main-schedule-small">
+                <tr className="days-and-time-container">
+                    <th className="days-container">Dienos</th>
+                    <th id="monday-lessons" className="lessons">
+                        Pirma&shy;dienis
+                    </th>
+                    <th id="tuesday-lessons" className="lessons">
+                        Antra&shy;dienis
+                    </th>
+                    <th id="wednesday-lessons" className="lessons">
+                        Trečia&shy;dienis
+                    </th>
+                    <th id="thursday-lessons" className="lessons">
+                        Ketvirta&shy;dienis
+                    </th>
+                    <th id="friday-lessons" className="lessons">
+                        Penkta&shy;dienis
+                    </th>
+                </tr>
 
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">1</div>
-            <div className="lesson-time">8:00 - 8:45</div>
-          </th>
-          <th className="monday-lesson lesson">
-            <div
-              className="lesson-name"
-              style={{ background: "rgb(26, 180, 26)" }}
-            >
-              Anglų
-            </div>
-            <div className="lesson-extra-info">
-              <div className="lesson-class">28</div>
-              <div className="lesson-teacher">DV</div>
-            </div>
-          </th>
-          <th className="tuesday-lesson lesson">
-            <div
-              className="lesson-name"
-              style={{ background: "rgb(26, 180, 26)" }}
-            >
-              Anglų
-            </div>
-            <div className="lesson-extra-info">
-              <div className="lesson-class">28</div>
-              <div className="lesson-teacher">DV</div>
-            </div>
-          </th>
-          <th className="wednesday-lesson lesson">
-            <div
-              className="lesson-name"
-              style={{ background: "rgb(26, 180, 26)" }}
-            >
-              Anglų
-            </div>
-            <div className="lesson-extra-info">
-              <div className="lesson-class">28</div>
-              <div className="lesson-teacher">DV</div>
-            </div>
-          </th>
-          <th className="thursday-lesson lesson">
-            <div
-              className="lesson-name"
-              style={{ background: "rgb(26, 180, 26)" }}
-            >
-              Anglų
-            </div>
-            <div className="lesson-extra-info">
-              <div className="lesson-class">28</div>
-              <div className="lesson-teacher">DV</div>
-            </div>
-          </th>
-          <th className="friday-lesson lesson">
-            <div
-              className="lesson-name"
-              style={{ background: "rgb(26, 180, 26)" }}
-            >
-              Anglų
-            </div>
-            <div className="lesson-extra-info">
-              <div className="lesson-class">28</div>
-              <div className="lesson-teacher">DV</div>
-            </div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">2</div>
-            <div className="lesson-time">8:55 - 9:40</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">3</div>
-            <div className="lesson-time">9:50 - 10:35</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">3</div>
-            <div className="lesson-time">9:50 - 10:35</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">4</div>
-            <div className="lesson-time">10:45 - 11:30</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">5</div>
-            <div className="lesson-time">12:00 - 12:45</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">6</div>
-            <div className="lesson-time">12:55 - 13:40</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">7</div>
-            <div className="lesson-time">13:50 - 14:35</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">8</div>
-            <div className="lesson-time">14:45 - 15:30</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">9</div>
-            <div className="lesson-time">15:40 - 16:25</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">10</div>
-            <div className="lesson-time">16:35 - 17:20</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">11</div>
-            <div className="lesson-time">17:30 - 18:15</div>
-          </th>
-        </tr>
-        <tr>
-          <th className="lesson-number-container">
-            <div className="lesson-number">12</div>
-            <div className="lesson-time">18:25 - 19:10</div>
-          </th>
-        </tr>
-      </table>
-    </div>
-  );
+                {lessonTimes.length !== 0 ?
+                    lessonTimes.map((time, index) => (
+                        <tr key={index}>
+                            <th className="lesson-number-container">
+                                <div className="lesson-number">{index + 1}</div>
+                                <div className="lesson-time">{time}</div>
+                            </th>
+
+                            {lessons.length !== 0 && lessons[0][selectedClass] && Object.keys(lessons[0][selectedClass]).length !== 0 ? (
+                                Object.keys(lessons[0][selectedClass]).map((day, daysIndex) => {
+                                    const firstLesson = lessons[0][selectedClass][day][index]; // Get the first lesson of the day
+
+                                    // Remove the "lessons_" prefix from day
+                                    const dayWithoutPrefix = day.replace("lessons_", "");
+
+                                    // Determine the className based on the day without the prefix
+                                    const className = `${dayWithoutPrefix}-lesson lesson`;
+
+                                    return (
+                                        <th key={day} className={className}>
+                                            <div
+                                                className="lesson-name"
+                                                style={{ background: `${firstLesson.lessonBackground}` }}
+                                            >
+                                                {firstLesson.lessonName}
+                                            </div>
+                                            <div className="lesson-extra-info">
+                                                <div className="lesson-class">{firstLesson.lessonClass}</div>
+                                                <div className="lesson-teacher">
+                                                    {firstLesson.lessonTeacherShort}
+                                                </div>
+                                            </div>
+                                        </th>
+                                    );
+                                })
+                            ) : null}
+
+                        </tr>
+                    ))
+                    : null
+                }
+            </table>
+        </div>
+    );
 }
 
 export default Schedule;
