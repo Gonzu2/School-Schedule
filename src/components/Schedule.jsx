@@ -1,12 +1,17 @@
 import { getCurrentClassChosen } from "./ClassButton";
 import ClassButton from "./ClassButton";
 import "../css/schedule.css";
+import { useLocation } from "react-router-dom";
 
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
 
 function Schedule({ lessons }) {
+  const location = useLocation();
+
+  const isDashboardRoute = location.pathname === "/dashboard";
+
   const lessonTimes = [
     "8:00 - 8:45",
     "8:55 - 9:40",
@@ -69,14 +74,6 @@ function Schedule({ lessons }) {
         .replace(" ", "");
     });
   }
-
-  // for (const day of daysOfWeek) {
-  //   lessons[selectedClass][day].forEach((lesson) => {
-  //     lesson.lessonTeacherShort = lesson.lessonTeacher
-  //       .replace(/[a-ž]/g, "")
-  //       .replace(" ", "");
-  //   });
-  // }
 
   function handleClassChange(newClass) {
     setSelectedClass(newClass);
@@ -148,17 +145,6 @@ function Schedule({ lessons }) {
         </tbody>
       </table>
 
-      {/* 
-            
-            <th className="monday-lesson lesson">
-                <div className="lesson-name" style={{ background: "rgb(26, 180, 26)" }}>Anglų</div>
-                <div className="lesson-extra-info">
-                    <div className="lesson-class">28</div>
-                    <div className="lesson-teacher">DV</div>
-                </div>
-            </th>
-
-            */}
       <table className="main-schedule-small">
         <tbody>
           <tr className="days-and-time-container">
@@ -192,8 +178,7 @@ function Schedule({ lessons }) {
                   lessons[selectedClass] &&
                   Object.keys(lessons[selectedClass]).length !== 0
                     ? Object.keys(lessons[selectedClass]).map((day) => {
-                        const firstLesson =
-                          lessons[selectedClass][day][index];
+                        const firstLesson = lessons[selectedClass][day][index];
 
                         const dayWithoutPrefix = day.replace("lessons_", "");
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Schedule from "./Schedule";
 
-let backend_url = "https://accurate-polarized-girl.glitch.me/";
-// let backend_url = "http://localhost:5231/"
+// let backend_url = "https://accurate-polarized-girl.glitch.me/";
+let backend_url = "http://localhost:5231/"
 
 const GetLessons = () => {
   const [loading, setLoading] = useState(true);

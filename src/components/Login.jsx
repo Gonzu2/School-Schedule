@@ -4,13 +4,51 @@ import googleLogo from "../images/gmail-logo.png";
 import twitterLogo from "../images/twitter.png";
 import facebookLogo from "../images/facebook-logo.png";
 
-import { useState, useEffect } from "react";
+import Dashboard from "./Dashboard";
+
+import { useRef, useState } from "react";
+import { Navigate, Link } from "react-router-dom";
 
 function Login() {
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [loggedin, setLoggedIn] = useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5231/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: usernameRef.current.value,
+          password: passwordRef.current.value,
+        }),
+      });
+
+      if (response.ok) {
+        // Login successful
+        setLoggedIn(true);
+      } else {
+        // Login failed
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+
+  if (loggedin) {
+    return <Navigate to="/dashboard" />;
+  }
+
   return (
     <div className="login-container">
       <Navbar showLogin="showMain" />
-      <section className={"login-menu"}>
+      <form className={"login-menu"} onSubmit={handleLogin}>
         <h1 className="login-header">Prisijungti</h1>
         <div className="login-inputs">
           <label htmlFor="username">
@@ -22,6 +60,7 @@ function Login() {
             placeholder="Įveskite vartotojo vardą"
             name="username"
             required
+            ref={usernameRef}
           />
 
           <label htmlFor="password">
@@ -32,10 +71,15 @@ function Login() {
             placeholder="Įveskite vartotojo slaptažodį"
             name="password"
             required
+            ref={passwordRef}
           />
-          <a href="#" className="forgot-password">Pamiršote salptažodį?</a>
-          <button type="submit">Prisijungtu</button>
-          <div className="seperate-login-ways">Prisijungti kitais būdais</div>
+          <a href="#" className="forgot-password">
+            Pamiršote slaptažodį?
+          </a>
+          <button className="submit-login" type="submit">
+            Prisijungti
+          </button>
+          <div className="separate-login-ways">Prisijungti kitais būdais</div>
           <ul className="different-login-ways">
             <li>
               <img
@@ -60,7 +104,7 @@ function Login() {
             </li>
           </ul>
         </div>
-      </section>
+      </form>
     </div>
   );
 }

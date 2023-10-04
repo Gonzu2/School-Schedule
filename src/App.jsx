@@ -9,17 +9,17 @@ import "./css/app.css";
 const router = createBrowserRouter([
   {
     path: "/dashboard",
-    element: Dashboard(),
+    element: <Dashboard />,
   },
   {
     path: "/login",
-    element: Login(),
+    element: <Login />,
   },
   {
     path: "/",
     element: (
       <div className="app-main-div">
-        <Navbar showLogin="showLogin"/>
+        <Navbar showLogin="showLogin" />
         <div className="schedule-container">
           <div className="main">
             <GetLessons />
