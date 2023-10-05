@@ -1,13 +1,29 @@
 import { getCurrentClassChosen } from "./ClassButton";
 import ClassButton from "./ClassButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../css/schedule.css";
 import { useLocation } from "react-router-dom";
+import LessonInfo from "./LessonInfo";
 
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
 
 function Schedule({ lessons }) {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [lessonSelected, setLessonSelected] = useState(false);
+  const [editLessonName, setEditLessonName] = useState(false);
+
+  function handleLessonClick(lesson) {
+    setLessonSelected(lesson);
+    setIsPopupVisible(true);
+  }
+
+  function closePopup() {
+    setIsPopupVisible(false);
+  }
+
   const location = useLocation();
 
   const isDashboardRoute = location.pathname === "/dashboard";
@@ -79,8 +95,44 @@ function Schedule({ lessons }) {
     setSelectedClass(newClass);
   }
 
+  function handleEditLessonName() {
+    setEditLessonName(true);
+  }
+
   return (
     <div className="schedules-container">
+      {isPopupVisible && isDashboardRoute && (
+        <div className="popup">
+          <div className="popup-content">
+            <div className="popup-lesson-header">
+              <h2>Pasirinktos pamokos informacija</h2>
+              <button className="popup-close-btn" onClick={closePopup}>
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+            </div>
+            <ul className="popup-selected-lesson-info">
+              <li className="popup-selected-lesson-info-item popup-selected-lesson-name">
+                <div>Pamoka - {lessonSelected.lessonName}</div>
+                <div className="lesson-names-list">
+                  <select defaultValue={lessonSelected.lessonName}>
+                    <option value="Matematika">Matematika</option>
+                    <option value="Anglų kalba">Anglų kalba</option>
+                  </select>
+                </div>
+              </li>
+              <li className="popup-selected-lesson-info-item popup-selected-lesson-teacher">
+                Pamokos vedėjas/a - {lessonSelected.lessonTeacher}
+              </li>
+              <li className="popup-selected-lesson-info-item popup-selected-lesson-classroom">
+                Klasė - {lessonSelected.lessonClass}
+              </li>
+              <li className="popup-selected-lesson-info-item popup-selected-lesson-number">
+                Pamokos indeksas - {lessonSelected.lessonNumber}
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
       <ClassButton onClassChange={handleClassChange} />
       <table className="main-schedule-big">
         <tbody>
@@ -106,27 +158,16 @@ function Schedule({ lessons }) {
                 {lessons.length !== 0 &&
                 lessons[selectedClass][daysOfWeek[index]].length !== 0 ? (
                   lessons[selectedClass][daysOfWeek[index]].map(
-                    (lesson, lessonIndex) => (
-                      <th
-                        key={lessonIndex}
-                        className={`${daysEnglish[index]}-lesson lesson`}
-                      >
-                        <div
-                          className="lesson-name"
-                          style={{ background: `${lesson.lessonBackground}` }}
-                        >
-                          {lesson.lessonName}
-                        </div>
-                        <div className="lesson-extra-info">
-                          <div className="lesson-class">
-                            {lesson.lessonClass}
-                          </div>
-                          <div className="lesson-teacher">
-                            {lesson.lessonTeacherShort}
-                          </div>
-                        </div>
-                      </th>
-                    )
+                    (lesson, lessonIndex) => {
+                      return (
+                        <LessonInfo
+                          key={lessonIndex}
+                          lesson={lesson}
+                          lessonIndex={lessonIndex}
+                          onClick={handleLessonClick}
+                        />
+                      );
+                    }
                   )
                 ) : (
                   <th colSpan={lessons.length === 0 ? 5 : 1}>

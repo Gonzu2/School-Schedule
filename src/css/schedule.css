@@ -1,196 +1,278 @@
 .main-schedule-big,
 .main-schedule-small {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 0;
-    margin: 0;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0;
+  margin: 0;
 
-    table-layout: fixed;
+  table-layout: fixed;
 
-    display: table;
+  display: table;
 }
 
-
 th {
-    border: 1px solid black;
-    padding: 0 5px 0 5px;
+  border: 1px solid black;
+  padding: 0 5px 0 5px;
 }
 
 .lessons {
-    height: 100px;
+  height: 100px;
 }
 
-
-
 th:nth-child(1) {
-    border-left: none;
+  border-left: none;
 }
 
 .days-container {
-    padding: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
 }
 
 .lesson-number-container {
-    height: 60px;
-    padding: 0;
+  height: 60px;
+  padding: 0;
 }
 
-
 .lesson-number {
-    font-size: 16px;
-    font-weight: 600;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .lesson-time {
-    font-size: 12px;
-    width: max-content;
-    font-weight: 500;
-    width: 95px;
+  font-size: 12px;
+  width: max-content;
+  font-weight: 500;
+  width: 95px;
 }
 
 .lessons {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .lesson {
-    justify-items: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    height: 120px;
-    padding: 0;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 120px;
+  padding: 0;
 
-    max-width: 90px;
-    overflow: hidden;
+  max-width: 90px;
+  overflow: hidden;
 }
 
 .lesson-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    font-weight: 600;
-    overflow: hidden;
-    box-sizing: border-box;
-    padding: 5px;
-    white-space: normal;
-    overflow-wrap: anywhere; /* Allow breaking anywhere in a word */
-    font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 5px;
+  white-space: normal;
+  overflow-wrap: anywhere; /* Allow breaking anywhere in a word */
+  font-size: 13px;
 }
 
-
-
 .lesson-extra-info {
-    box-sizing: border-box;
-    position: relative;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .lesson-class {
-    position: absolute;
-    bottom: 2px;
-    left: 3px;
-    font-size: 16px;
-    font-weight: 500;
+  position: absolute;
+  bottom: 2px;
+  left: 3px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .lesson-teacher {
-    position: absolute;
-    bottom: 2px;
-    right: 3px;
-    font-size: 22px;
-    font-weight: 600;
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .main-schedule-small {
-    display: none;
+  display: none;
 }
 
 .schedules-container {
-    max-height: 2000px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 50px;
+  max-height: 2000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 50px;
 
-    padding: 0 0 50px 0;
-
+  padding: 0 0 50px 0;
 }
 
 @media screen and (width <=1310px) {
-    .main-schedule-big {
-        display: none;
-    }
+  .main-schedule-big {
+    display: none;
+  }
 
-    .main-schedule-small {
-        display: table;
-    }
+  .main-schedule-small {
+    display: table;
+  }
 
-    .lessons {
-        max-width: 90px;
-        padding: 5px;
+  .lessons {
+    max-width: 90px;
+    padding: 5px;
 
-        box-sizing: border-box;
-        position: relative;
+    box-sizing: border-box;
+    position: relative;
 
-        font-size: 16px;
-        overflow-wrap: break-word;
-        hyphens: auto;
-        word-wrap: break-word;
-    }
+    font-size: 16px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    word-wrap: break-word;
+  }
 
-    .lesson {
-        width: 90px;
-        max-width: 90px;
-    }
+  .lesson {
+    width: 90px;
+    max-width: 90px;
+  }
 
-    .lesson-number-container {
-        height: 120px;
-    }
+  .lesson-number-container {
+    height: 120px;
+  }
 }
 
 @media screen and (width <=590px) {
-    .schedules-container {
-        transform-origin: center top;
-        /* Set the transform origin to the top center */
-        transform: scale(0.9);
-    }
+  .schedules-container {
+    transform-origin: center top;
+    /* Set the transform origin to the top center */
+    transform: scale(0.9);
+  }
 }
 
 @media screen and (width <=535px) {
-    .schedules-container {
-        transform-origin: center top;
-        /* Set the transform origin to the top center */
-        transform: scale(0.8);
-    }
+  .schedules-container {
+    transform-origin: center top;
+    /* Set the transform origin to the top center */
+    transform: scale(0.8);
+  }
 }
 
 @media screen and (width <=475px) {
-
-    .schedules-container {
-        transform-origin: center top;
-        /* Set the transform origin to the top center */
-        transform: scale(0.7);
-    }
+  .schedules-container {
+    transform-origin: center top;
+    /* Set the transform origin to the top center */
+    transform: scale(0.7);
+  }
 }
 
 @media screen and (width <=420px) {
-
-    .schedules-container {
-        transform-origin: center top;
-        /* Set the transform origin to the top center */
-        transform: scale(0.65);
-    }
+  .schedules-container {
+    transform-origin: center top;
+    /* Set the transform origin to the top center */
+    transform: scale(0.65);
+  }
 }
 
 @media screen and (width <=390px) {
+  .schedules-container {
+    transform-origin: center top;
+    /* Set the transform origin to the top center */
+    transform: scale(0.6);
+  }
+}
 
-    .schedules-container {
-        transform-origin: center top;
-        /* Set the transform origin to the top center */
-        transform: scale(0.6);
-    }
+.popup {
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.376);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  width: 80%;
+  height: 80%;
+  background-color: rgba(0, 152, 218);
+  border-radius: 10px;
+  padding: 25px 50px 25px 50px;
+}
+
+.popup-lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.popup-lesson-header h2 {
+  margin: 0;
+  color: white;
+}
+
+.popup-lesson-header button {
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+
+.popup-lesson-header button svg {
+  width: 32px;
+  height: 32px;
+}
+
+.popup-lesson-header button svg path {
+  fill: white;
+}
+
+.popup-selected-lesson-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  color: white;
+  list-style: none;
+  padding: 0;
+  gap: 10px;
+}
+
+.popup-selected-lesson-info-item {
+  padding: 15px;
+  border-radius: 10px;
+  width: 400px;
+  background-color: rgb(14, 99, 209);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.lesson-names-list select {
+  cursor: pointer;
+  width: 150px;
+  height: 45px;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 15px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.lesson-names-list select option {
+  width: 150px;
+  color: black;
+  background: none;
+  border: none;
 }
